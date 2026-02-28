@@ -1,24 +1,11 @@
-# Environment and secrets
+# Environment
 .env
-*.env
 
-# Real customer data — never commit this
+# Real customer data — never commit
 data/real/
 
-# Generated outputs — keep out of version control
-outputs/reports/
-memory/history.json
+# Generated output
+outputs/reports/*.md
 
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-.pytest_cache/
-.venv/
-venv/
-*.egg-info/
-dist/
-build/
-
-# OS
+# macOS
 .DS_Store

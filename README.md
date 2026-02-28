@@ -1,156 +1,120 @@
 # ecom-feedback-intelligence
 
-A multi-agent pipeline that ingests customer feedback from eCommerce platforms and transforms it into structured, PM-ready insights using the Anthropic Claude API.
+Customer review intelligence pipeline for Papier. Analyses TrustPilot reviews, classifies sentiment and themes, scores priority, and generates PM insights.
 
-Built as a portfolio project demonstrating applied AI engineering for product teams. Designed to be dropped into any eCommerce brand by swapping a single config file.
-
----
-
-## What it does
-
-```mermaid
-graph LR
-    A["TrustPilot Reviews\n(mock or live)"] --> B["Ingestion\nConnector"]
-    B --> C["Sentiment Classifier\nclaude-haiku-4-5"]
-    B --> D["Theme Extractor\nclaude-haiku-4-5"]
-    C --> E["Priority Scorer\nPure Python"]
-    D --> E
-    E --> F["Aggregation\nPure Python"]
-    F --> G["Insight Generator\nclaude-sonnet-4-6"]
-    F --> H["Memory\nJSON history"]
-    H --> G
-    G --> I["Markdown Report"]
-    G --> J["Slack Alert\n(optional)"]
-```
-
-**Pipeline steps:**
-1. **Ingest** — Load reviews from TrustPilot (mock mode ships out of the box; real API is a config toggle)
-2. **Classify** — Sentiment and theme extraction per review using `claude-haiku-4-5` with forced `tool_use`
-3. **Score** — Deterministic priority scoring (no LLM — rating × sentiment weight × recency)
-4. **Aggregate** — Theme frequency, sentiment distribution, surface high-priority issues
-5. **Synthesise** — `claude-sonnet-4-6` generates PM-structured recommendations with effort/impact estimates
-6. **Output** — Dated markdown report + optional Slack message
+Built as a portfolio project demonstrating a specific architectural insight: **when you already pay for Claude Code, the Python glue code is the wrong layer of abstraction**.
 
 ---
 
-## Design decisions
+## Architecture
 
-### tool_use with forced tool_choice
-Every LLM call uses `tool_choice={"type": "tool", "name": "..."}` to force structured output. This guarantees schema compliance without regex or JSON parsing — the tool block input is already a typed dict.
+This project runs entirely within Claude Code — no Python, no API keys, no pip install.
 
-```python
-response = client.messages.create(
-    model="claude-haiku-4-5",
-    tools=[SENTIMENT_TOOL],
-    tool_choice={"type": "tool", "name": "classify_sentiment"},  # guaranteed structured output
-    messages=[...]
-)
-result = next(b for b in response.content if b.type == "tool_use").input
+```
+/analyze-reviews  →  reads reviews  →  classifies sentiment + themes
+                  →  scores priority (deterministic formula)
+                  →  aggregates + generates PM insights
+                  →  updates memory/history.json
+                  →  offers /generate-report
 ```
 
-### Two-tier model selection
-Haiku processes every review (cheap, fast). Sonnet synthesises once at the end (quality where it matters).
+The skill files are the pipeline. The rules files are the prompt engineering.
 
-| Step | Model | Why |
-|------|-------|-----|
-| Sentiment classification | `claude-haiku-4-5` | ~$0.00025/1K tokens, runs per review |
-| Theme extraction | `claude-haiku-4-5` | Same — bulk processing |
-| Insight generation | `claude-sonnet-4-6` | Runs once; quality and reasoning matter |
+```
+config/brand.yaml                    ← Brand config, theme taxonomy, weights
+data/examples/trustpilot_sample.json ← Synthetic review data (50 reviews)
+memory/history.json                  ← Rolling history (max 12 snapshots)
+outputs/reports/                     ← Generated markdown reports
+.claude/skills/                      ← Slash command implementations
+.claude/rules/                       ← Analysis standards and constraints
+CLAUDE.md                            ← Project instructions (auto-loaded)
+```
 
-**Estimated cost per run (100 reviews): ~$0.02**
+---
 
-### Priority scorer has no LLM
-`skills/priority_scorer.py` uses a deterministic formula: `base_score × sentiment_weight × confidence × recency`. Not every step needs AI — this is cheaper, faster, and its logic is auditable.
+## Slash Commands
 
-### Config-driven theme taxonomy
-The theme classifier's enum is populated at runtime from `config/brand.yaml`. Claude cannot tag a theme that isn't in the brand's taxonomy. Swapping `brand.yaml` adapts the entire pipeline to a new brand.
-
-### Mock mode by default
-The TrustPilot connector defaults to reading from a local JSON file. Anyone cloning this repo can run the full pipeline without API keys for the data source. Real API access is a `NotImplementedError` stub with documented implementation notes.
+| Command | What it does |
+|---------|-------------|
+| `/analyze-reviews` | Full pipeline: ingest → classify → score → aggregate → insights → history |
+| `/classify-review` | Single-review deep-dive — paste text, get analysis card |
+| `/generate-report` | Write dated markdown report to `outputs/reports/` |
+| `/compare-periods` | Trend analysis across stored history snapshots |
 
 ---
 
 ## Quickstart
 
 ```bash
-# 1. Clone and install
 git clone https://github.com/jackhendon/ecom-feedback-intelligence
 cd ecom-feedback-intelligence
-pip install -r requirements.txt
-
-# 2. Set up credentials
-cp .env.example .env
-# Edit .env — add your ANTHROPIC_API_KEY
-
-# 3. Test without any API calls
-python -m agents.orchestrator --dry-run
-
-# 4. Run the full pipeline (uses synthetic sample data by default)
-python -m agents.orchestrator
-
-# 5. Find your report
-ls outputs/reports/
+# Open in Claude Code — no install needed
+/analyze-reviews
 ```
+
+---
+
+## Design decisions
+
+### Instructions as code
+
+The entire pipeline is implemented as Claude Code skill files and rules. The Python version of this project was ~800 lines across 8 files. The Claude Code version is 8 markdown files.
+
+| Aspect | Python API version | Claude Code native |
+|--------|-------------------|-------------------|
+| Runtime | Python + pip + venv | Claude Code (already installed) |
+| API auth | ANTHROPIC_API_KEY | Included with subscription |
+| Orchestration | 100+ lines Python | `analyze-reviews/SKILL.md` |
+| Structured output | `tool_use` + schema | Rule files with examples |
+| Dependencies | anthropic, pyyaml, pytest, requests | None |
+| Testing | pytest + mocks | Run the skill, inspect output |
+
+The craft shifted from Python engineering to prompt engineering: constrained theme taxonomy, evidence-based insight standards, deterministic priority formula, structured report conventions. The question this project answers is *when do you need code and when don't you*.
+
+### Constrained theme taxonomy
+
+The 8 theme slugs in `config/brand.yaml` are the only valid themes. The taxonomy rule file defines exactly what evidence justifies each theme and what is excluded. This prevents theme drift and ensures consistent classification across runs.
+
+### Deterministic priority scoring
+
+Priority scoring uses a formula — no LLM judgment:
+
+```
+priority = (6 - rating) × sentiment_weight × confidence × recency_multiplier
+```
+
+Where sentiment weights come from `brand.yaml` (negative=2.0, neutral=1.0, positive=0.5) and recency is tiered (≤7 days: 1.2×, ≤30 days: 1.0×, older: 0.8×). High priority threshold: ≥ 6.0.
+
+Not every step needs AI. Deterministic logic is cheaper, faster, and its reasoning is auditable.
+
+### Rolling history
+
+`memory/history.json` stores the last 12 weekly snapshots. `/compare-periods` reads this to identify trends: sentiment trajectory, theme rank movement, priority score acceleration. The PM insight this enables (e.g. "delivery complaints have risen 3 periods in a row") is more valuable than any single-period analysis.
+
+### Config-driven brand abstraction
+
+Swapping `config/brand.yaml` adapts the entire pipeline to a new eCommerce brand — different theme taxonomy, different weights, different brand name in reports. Designed to be portable.
 
 ---
 
 ## Adapting for your brand
 
 1. Edit `config/brand.yaml`:
-   - Set `brand.name` to your brand
-   - Update `themes` to match your product/experience taxonomy
-   - Adjust `sentiment.weights` if you want to change urgency scoring
+   - Set `brand.name`
+   - Replace `themes` with your taxonomy (8 slugs recommended)
+   - Adjust `sentiment.weights` if urgency priorities differ
 
-2. Replace `data/examples/trustpilot_sample.json` with your own reviews in the same format, or implement `_fetch_from_api()` in `agents/ingestion/trustpilot.py`.
+2. Replace `data/examples/trustpilot_sample.json` with your reviews in the same schema:
+   ```json
+   {"reviews": [{"id": "...", "rating": 4, "author": "...", "date": "YYYY-MM-DD", "text": "..."}]}
+   ```
 
-3. Toggle `reporting.slack_enabled: true` in `brand.yaml` and add your `SLACK_WEBHOOK_URL` to `.env`.
-
----
-
-## Project structure
-
-```
-ecom-feedback-intelligence/
-├── config/brand.yaml              # Brand config — swap this to use for any brand
-├── data/examples/                 # Synthetic sample data (not real customer data)
-├── agents/
-│   ├── orchestrator.py            # Pipeline runner
-│   └── ingestion/trustpilot.py   # Connector (mock + real API stub)
-├── skills/
-│   ├── sentiment_classifier.py   # Haiku + tool_use → sentiment
-│   ├── theme_extractor.py        # Haiku + tool_use → themes (config-constrained)
-│   ├── priority_scorer.py        # Pure Python priority scoring (no LLM)
-│   └── insight_generator.py     # Sonnet + tool_use → PM recommendations
-├── prompts/                       # Prompt templates (loaded from .txt files)
-├── outputs/
-│   ├── markdown_reporter.py      # Writes dated .md report
-│   └── slack_reporter.py        # Optional Slack webhook
-└── memory/history.json           # Rolling 12-week trend data (gitignored)
-```
-
----
-
-## Running tests
-
-```bash
-python -m pytest tests/ -v
-```
-
-Tests use `unittest.mock` — no API calls or credentials needed.
-
----
-
-## Future roadmap
-
-- **Phase 2**: Additional sources — Google Reviews, on-site NPS widget, Zendesk support tickets
-  - Each will implement the same `Connector` interface as `TrustPilotConnector` — multi-source is a 2-line change in the orchestrator
-- **Phase 3**: Trend alerting — Slack alert when `sentiment_trend == "declining"` for 2+ consecutive periods
-- **Phase 4**: Competitor benchmarking — run against competitor brand reviews, compare theme distributions
+3. Run `/analyze-reviews`.
 
 ---
 
 ## About
 
-Built by [Jack Hendon](https://github.com/jackhendonpapier), Senior Product Manager at Papier.
+Built by [Jack Hendon](https://github.com/jackhendon), Senior Product Manager at Papier.
 
-All data in this repository is **synthetic**. No real customer data is included. The project is designed to be used with anonymised or publicly available reviews only.
+All data in this repository is **synthetic**. No real customer data is included or should be committed.

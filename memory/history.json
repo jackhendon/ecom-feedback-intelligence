@@ -1,0 +1,40 @@
+{
+  "snapshots": [
+    {
+      "period": "2026-W09",
+      "run_date": "2026-02-28",
+      "review_count": 50,
+      "sentiment_distribution": {
+        "positive": {"count": 24, "pct": 48.0},
+        "neutral": {"count": 7, "pct": 14.0},
+        "negative": {"count": 19, "pct": 38.0}
+      },
+      "theme_frequency": {
+        "delivery": 15,
+        "personalisation": 15,
+        "product_quality": 13,
+        "customer_service": 13,
+        "gifting_experience": 12,
+        "packaging": 11,
+        "website_ux": 7,
+        "pricing": 5
+      },
+      "high_priority_issues": [
+        {"id": "synth_002", "rating": 1, "priority": 9.50, "primary_theme": "delivery"},
+        {"id": "synth_029", "rating": 1, "priority": 9.50, "primary_theme": "personalisation"},
+        {"id": "synth_023", "rating": 1, "priority": 7.92, "primary_theme": "delivery"},
+        {"id": "synth_006", "rating": 1, "priority": 7.84, "primary_theme": "delivery"},
+        {"id": "synth_035", "rating": 1, "priority": 7.84, "primary_theme": "delivery"},
+        {"id": "synth_007", "rating": 1, "priority": 7.76, "primary_theme": "delivery"},
+        {"id": "synth_017", "rating": 1, "priority": 7.76, "primary_theme": "delivery"},
+        {"id": "synth_012", "rating": 1, "priority": 7.60, "primary_theme": "personalisation"},
+        {"id": "synth_041", "rating": 1, "priority": 7.60, "primary_theme": "personalisation"},
+        {"id": "synth_048", "rating": 1, "priority": 7.44, "primary_theme": "delivery"},
+        {"id": "synth_038", "rating": 2, "priority": 7.04, "primary_theme": "website_ux"},
+        {"id": "synth_004", "rating": 2, "priority": 6.80, "primary_theme": "pricing"},
+        {"id": "synth_026", "rating": 2, "priority": 6.80, "primary_theme": "packaging"}
+      ],
+      "avg_priority_score": 3.25
+    }
+  ]
+}
