@@ -1,5 +1,5 @@
 {
-  "brand": "Papier",
+  "brand": "ExampleBrand",
   "note": "Synthetic data only. All names, reviews and scenarios are fictional. Do not submit real customer data to this repo.",
   "generated": "synthetic",
   "reviews": [
@@ -50,7 +50,7 @@
       "rating": 1,
       "author": "A. Green",
       "date": "2025-12-21",
-      "text": "Same as everyone else — Christmas order did not arrive. Tracking showed it stuck in a depot for 10 days. No proactive communication from Papier whatsoever. Had to chase three times."
+      "text": "Same as everyone else — Christmas order did not arrive. Tracking showed it stuck in a depot for 10 days. No proactive communication from the brand whatsoever. Had to chase three times."
     },
     {
       "id": "synth_008",
@@ -78,7 +78,7 @@
       "rating": 5,
       "author": "F. Robinson",
       "date": "2026-02-03",
-      "text": "I've ordered from Papier every year for the last five years. The notebooks are genuinely the best I've found anywhere. The lay-flat binding on the larger sizes is perfect."
+      "text": "I've ordered from this brand every year for the last five years. The notebooks are genuinely the best I've found anywhere. The lay-flat binding on the larger sizes is perfect."
     },
     {
       "id": "synth_012",
@@ -183,14 +183,14 @@
       "rating": 2,
       "author": "Y. Phillips",
       "date": "2026-02-14",
-      "text": "The stickers I ordered were fine but the packaging was over the top — way more plastic than necessary for a small item. Papier markets itself as a premium brand so I'd expect more thought on sustainability."
+      "text": "The stickers I ordered were fine but the packaging was over the top — way more plastic than necessary for a small item. They market themselves as a premium brand so I'd expect more thought on sustainability."
     },
     {
       "id": "synth_027",
       "rating": 5,
       "author": "AA. Evans",
       "date": "2026-02-12",
-      "text": "I use Papier notebooks exclusively for work. The quality is consistent every single time. The paper takes fountain pen ink beautifully with minimal bleed-through."
+      "text": "I use their notebooks exclusively for work. The quality is consistent every single time. The paper takes fountain pen ink beautifully with minimal bleed-through."
     },
     {
       "id": "synth_028",
@@ -225,14 +225,14 @@
       "rating": 2,
       "author": "FF. Morris",
       "date": "2026-01-21",
-      "text": "Delivery was significantly later than the estimated date. No communication from Papier — I had to log in and check the tracking myself. For a premium brand this is below par."
+      "text": "Delivery was significantly later than the estimated date. No communication from the brand — I had to log in and check the tracking myself. For a premium brand this is below par."
     },
     {
       "id": "synth_033",
       "rating": 5,
       "author": "GG. Rogers",
       "date": "2026-01-18",
-      "text": "The personalisation quality is absolutely top tier. Font rendering is crisp, foil is vivid. I've compared to competitors and Papier is streets ahead on execution."
+      "text": "The personalisation quality is absolutely top tier. Font rendering is crisp, foil is vivid. I've compared to competitors and this brand is streets ahead on execution."
     },
     {
       "id": "synth_034",
@@ -281,7 +281,7 @@
       "rating": 5,
       "author": "NN. Rivera",
       "date": "2026-01-29",
-      "text": "My daughter used Papier for her wedding stationery and it was flawless. The personalisation was beautiful and every single piece was printed perfectly. Many guests asked where she'd had it done."
+      "text": "My daughter used them for her wedding stationery and it was flawless. The personalisation was beautiful and every single piece was printed perfectly. Many guests asked where she'd had it done."
     },
     {
       "id": "synth_041",
@@ -302,7 +302,7 @@
       "rating": 5,
       "author": "QQ. Cox",
       "date": "2026-01-18",
-      "text": "Papier notebooks are my one true luxury. I buy one every January and it makes me actually look forward to work. The personalisation adds such a personal touch. Never changing."
+      "text": "Their notebooks are my one true luxury. I buy one every January and it makes me actually look forward to work. The personalisation adds such a personal touch. Never changing."
     },
     {
       "id": "synth_044",
@@ -344,7 +344,7 @@
       "rating": 5,
       "author": "WW. Ramirez",
       "date": "2026-02-25",
-      "text": "I've given Papier gifts to probably 20 people over the years. Every single one has been received with genuine delight. The brand has mastered what a gift should feel like."
+      "text": "I've given their gifts to probably 20 people over the years. Every single one has been received with genuine delight. They have mastered what a gift should feel like."
     },
     {
       "id": "synth_050",

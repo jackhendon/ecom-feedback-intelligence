@@ -1,8 +1,8 @@
 # Report Format Conventions
 
 ## File Naming
-Reports are saved to `outputs/reports/` with format: `papier_YYYY-WNN.md`
-Example: `papier_2026-W09.md`
+Reports are saved to `outputs/reports/` with format: `{brand.name.lower()}_YYYY-WNN.md`
+Example: `yourbrand_2026-W09.md` (using the name from `config/brand.yaml`)
 
 Week number uses ISO 8601 (Monday = start of week). Use Python-style: `datetime.now().strftime("%Y-W%V")` equivalent.
 
@@ -11,7 +11,7 @@ Week number uses ISO 8601 (Monday = start of week). Use Python-style: `datetime.
 ## Markdown Report Structure
 
 ```markdown
-# Papier Customer Feedback Intelligence
+# {brand.name} Customer Feedback Intelligence
 **Period**: YYYY-WNN
 **Run date**: YYYY-MM-DD
 **Reviews analysed**: N

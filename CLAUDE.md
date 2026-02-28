@@ -1,6 +1,6 @@
 # ecom-feedback-intelligence
 
-Customer review intelligence pipeline for Papier. Analyses TrustPilot reviews, classifies sentiment and themes, scores priority, and generates PM insights.
+Customer review intelligence pipeline. Analyses TrustPilot reviews, classifies sentiment and themes, scores priority, and generates PM insights.
 
 ## Architecture
 

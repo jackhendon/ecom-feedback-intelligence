@@ -26,8 +26,8 @@ No analysis results found. Run /analyze-reviews first, then /generate-report.
 And stop.
 
 ### Step 2: Determine filename
-Format: `papier_YYYY-WNN.md` where YYYY-WNN is the ISO week of the run date.
-Path: `outputs/reports/papier_YYYY-WNN.md`
+Format: `{brand.name.lower()}_YYYY-WNN.md` where YYYY-WNN is the ISO week of the run date (brand name from `config/brand.yaml`).
+Path: `outputs/reports/{brand.name.lower()}_YYYY-WNN.md`
 
 If a file with that name already exists, append `-v2`, `-v3` etc.
 
@@ -41,6 +41,6 @@ Populate all sections with data from the analysis. For the "Trend vs Previous Pe
 
 ### Step 4: Confirm
 ```
-Report saved: outputs/reports/papier_YYYY-WNN.md
+Report saved: outputs/reports/{brand.name.lower()}_YYYY-WNN.md
 [N lines | ~N words]
 ```

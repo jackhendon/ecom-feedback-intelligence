@@ -45,7 +45,7 @@ Experience of using the website or app: navigation, personalisation tool UX, che
 ---
 
 ## `customer_service`
-Human interactions with Papier's support team: response time, quality of resolution, tone, refund handling, complaint handling.
+Human interactions with the brand's support team: response time, quality of resolution, tone, refund handling, complaint handling.
 
 **Include**: "4 days to respond", "generic apology", "full refund", "helpful agent", "live chat", "email support", "no response"
 **Exclude**: automated emails like dispatch notifications (→ `delivery`)
@@ -61,7 +61,7 @@ Perceived value for money, price changes, discount codes, comparison to competit
 ---
 
 ## `gifting_experience`
-The experience of giving or receiving a Papier product as a gift, including emotional resonance, gift wrap options, gift messaging, recipient reaction.
+The experience of giving or receiving the brand's product as a gift, including emotional resonance, gift wrap options, gift messaging, recipient reaction.
 
 **Include**: "perfect gift", "she loved it", "gift message", "anniversary present", "birthday present", "gift wrapping"
 **Exclude**: delivery timing that affected a gift (→ `delivery` as primary, `gifting_experience` as secondary if emotional impact is described)
