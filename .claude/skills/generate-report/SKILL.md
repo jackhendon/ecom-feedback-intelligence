@@ -32,15 +32,16 @@ Path: `outputs/reports/{brand.name.lower()}_YYYY-WNN.md`
 If a file with that name already exists, append `-v2`, `-v3` etc.
 
 ### Step 3: Write the report
-Use the full report template from `.claude/rules/report-format.md`.
+Use the template from `.claude/rules/report-format.md`. Write the file in a single pass — do not output to terminal first.
 
-Populate all sections with data from the analysis. For the "Trend vs Previous Period" section:
-- Read `memory/history.json`
-- If 2+ snapshots exist, compare the most recent two: sentiment shift (pp change), theme movement (rank changes), avg priority score delta
-- If only 1 snapshot, write: "Insufficient history for trend comparison. Run again next week to begin tracking trends."
+For the "Trend vs Previous Period" section, read `memory/history.json` and compute directly from the two most recent snapshots:
+- Sentiment: pp change in positive% and negative%
+- Themes: rank order each period by frequency, list themes that moved up or down
+- Priority: avg_priority_score delta, high_priority_issues count delta
+
+If fewer than 2 snapshots: write "Insufficient history for trend comparison. Run again next week."
 
 ### Step 4: Confirm
 ```
 Report saved: outputs/reports/{brand.name.lower()}_YYYY-WNN.md
-[N lines | ~N words]
 ```

@@ -29,7 +29,18 @@ If the file doesn't exist or has no reviews, stop and tell the user.
 
 ### Step 3: Classify reviews — parallel subagents
 
-Split the reviews array into chunks of 10. Spawn one subagent per chunk simultaneously using the Agent tool (subagent_type: general-purpose, foreground, model: haiku).
+First, calculate chunk size and agent count based on total reviews (N):
+
+| Reviews | Chunk size | Agents |
+|---------|-----------|--------|
+| 1–20    | N (single agent) | 1 |
+| 21–100  | 20 | ceil(N/20) |
+| 101–300 | 30 | ceil(N/30) |
+| 300+    | 40 | ceil(N/40) |
+
+Split the reviews array into evenly-sized chunks. The last chunk may be smaller.
+
+**CRITICAL: Make all Agent tool calls in a single response to run them in parallel.** Do not wait for one to finish before starting the next — issue all calls simultaneously. Each call: subagent_type=general-purpose, model=haiku, foreground.
 
 Each subagent receives this exact prompt (substitute the actual reviews JSON and valid theme slugs):
 
@@ -57,7 +68,7 @@ Reviews to classify:
 [INSERT REVIEWS JSON ARRAY HERE]
 ---
 
-Wait for all subagents to complete, then collect and merge their JSON arrays into a single flat list of classified reviews.
+Once all agents have returned, merge their JSON arrays into a single flat list.
 
 ### Step 4: Score priority
 For each classified review, calculate (deterministic — no LLM):

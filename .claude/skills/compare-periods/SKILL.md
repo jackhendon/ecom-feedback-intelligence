@@ -53,38 +53,35 @@ For each metric, show direction of change across the selected window:
 
 ### Step 4: Output trend report
 
+Compute all values directly from the JSON data — no estimation.
+
 ```
 TREND ANALYSIS — [earliest period] to [latest period]
 N snapshots | N total reviews
 
 SENTIMENT TREND
-  Period      | Positive | Neutral | Negative | Net Score
-  ──────────────────────────────────────────────────────
-  YYYY-WNN   |    N%    |   N%   |    N%    |   +N / -N
-  [...]
+  Period    | Positive | Neutral | Negative | Net
+  ──────────────────────────────────────────────
+  YYYY-WNN  |   N%    |   N%   |    N%    |  ±N
 
 THEME MOVEMENT
-  Rising:  delivery (↑ N), customer_service (↑ N)
-  Falling: packaging (↓ N)
-  Stable:  product_quality, personalisation
-  Accelerating: delivery — increased N mentions since [period]
+  Rising:       [theme] (↑ N), ...
+  Falling:      [theme] (↓ N), ...
+  Stable:       [themes with < 2 mention change]
+  Accelerating: [any theme up > 5 mentions period-over-period]
 
 PRIORITY TRENDS
-  Avg priority score: [sparkline or table]
-  High-priority count: N → N → N → N
+  Avg score:         N → N → N
+  High-priority count: N → N → N
 
 KEY SIGNALS
-  [2–3 bullet points summarising the most important trend to act on]
-
-  Example:
-  • Delivery complaints have risen 3 periods in a row — now #1 theme
-  • Net sentiment recovering: -12% → -8% → -3% over last 3 weeks
-  • No high-priority personalisation issues for 4 weeks (resolved?)
+  • [signal 1]
+  • [signal 2]
+  • [signal 3]
 ```
 
 ### Step 5: PM recommendation
-Based on the trends, offer 1 clear recommendation:
 ```
 RECOMMENDED ACTION
-[One specific, evidence-based recommendation for the PM based on the trend data]
+[One specific, evidence-based recommendation derived from the trend data]
 ```
