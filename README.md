@@ -74,7 +74,7 @@ The TrustPilot connector defaults to reading from a local JSON file. Anyone clon
 
 ```bash
 # 1. Clone and install
-git clone https://github.com/jackhendonpapier/ecom-feedback-intelligence
+git clone https://github.com/jackhendon/ecom-feedback-intelligence
 cd ecom-feedback-intelligence
 pip install -r requirements.txt
 
