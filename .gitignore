@@ -9,3 +9,7 @@ outputs/reports/*.md
 
 # macOS
 .DS_Store
+
+# Memory
+
+memory/history.json
