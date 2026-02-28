@@ -1,0 +1,357 @@
+{
+  "brand": "Papier",
+  "note": "Synthetic data only. All names, reviews and scenarios are fictional. Do not submit real customer data to this repo.",
+  "generated": "synthetic",
+  "reviews": [
+    {
+      "id": "synth_001",
+      "rating": 5,
+      "author": "S. Thompson",
+      "date": "2026-02-20",
+      "text": "Absolutely love my personalised notebook. The gold foil lettering was perfect and arrived beautifully packaged in tissue paper. Will definitely order again for gifts."
+    },
+    {
+      "id": "synth_002",
+      "rating": 1,
+      "author": "M. Clarke",
+      "date": "2026-02-18",
+      "text": "Ordered a Christmas gift in plenty of time but it arrived two weeks late. No tracking updates for 8 days. Customer service took 4 days to respond with a generic apology. Very disappointing."
+    },
+    {
+      "id": "synth_003",
+      "rating": 5,
+      "author": "R. Patel",
+      "date": "2026-02-15",
+      "text": "The quality of the print on the photo book is stunning. Colours are vibrant and the paper feels premium. Perfect anniversary gift and my partner was thrilled."
+    },
+    {
+      "id": "synth_004",
+      "rating": 2,
+      "author": "J. Williams",
+      "date": "2026-02-12",
+      "text": "The product itself is lovely but the price keeps going up. I used to order every month but now it feels too expensive for what it is. Will probably switch to a competitor."
+    },
+    {
+      "id": "synth_005",
+      "rating": 4,
+      "author": "L. Baker",
+      "date": "2026-02-10",
+      "text": "Really happy with my diary, the personalisation looked great. Delivery was a day late but not a big deal. Packaging was a bit excessive with all the plastic wrap."
+    },
+    {
+      "id": "synth_006",
+      "rating": 1,
+      "author": "T. Harrison",
+      "date": "2025-12-22",
+      "text": "Christmas disaster. Ordered December 10th for December 23rd delivery — guaranteed on your website. It arrived January 3rd. My daughter had nothing to open on Christmas morning. Absolutely ruined it."
+    },
+    {
+      "id": "synth_007",
+      "rating": 1,
+      "author": "A. Green",
+      "date": "2025-12-21",
+      "text": "Same as everyone else — Christmas order did not arrive. Tracking showed it stuck in a depot for 10 days. No proactive communication from Papier whatsoever. Had to chase three times."
+    },
+    {
+      "id": "synth_008",
+      "rating": 2,
+      "author": "P. Edwards",
+      "date": "2025-12-20",
+      "text": "Delivery estimate was wildly optimistic. I understand peak season is hard but there was zero communication when things went wrong. A simple update email would have gone a long way."
+    },
+    {
+      "id": "synth_009",
+      "rating": 5,
+      "author": "H. Morris",
+      "date": "2026-02-08",
+      "text": "The gifting experience is second to none. The box, the tissue, the little card — it all felt so special when I gave it to my mum. She was genuinely moved."
+    },
+    {
+      "id": "synth_010",
+      "rating": 3,
+      "author": "C. Wilson",
+      "date": "2026-02-05",
+      "text": "Product is fine. Website kept crashing on my phone when I tried to checkout. Took four attempts over two days to get the order through. Very frustrating."
+    },
+    {
+      "id": "synth_011",
+      "rating": 5,
+      "author": "F. Robinson",
+      "date": "2026-02-03",
+      "text": "I've ordered from Papier every year for the last five years. The notebooks are genuinely the best I've found anywhere. The lay-flat binding on the larger sizes is perfect."
+    },
+    {
+      "id": "synth_012",
+      "rating": 1,
+      "author": "N. Taylor",
+      "date": "2026-01-28",
+      "text": "Sent a personalised gift to my friend and the name was printed incorrectly. I double-checked my order and it was right there. Quality control is clearly an issue. No apology offered."
+    },
+    {
+      "id": "synth_013",
+      "rating": 4,
+      "author": "D. Anderson",
+      "date": "2026-01-25",
+      "text": "Great quality as always. Only feedback is the website can be slow when uploading photos. Took about 10 minutes to upload 30 images which seemed excessive."
+    },
+    {
+      "id": "synth_014",
+      "rating": 2,
+      "author": "K. Martin",
+      "date": "2026-01-22",
+      "text": "The notebook arrived with a dented corner — clearly from poor packaging. The product inside looked nice but I couldn't give it as a gift in that condition. Returns process was a pain."
+    },
+    {
+      "id": "synth_015",
+      "rating": 5,
+      "author": "O. Jackson",
+      "date": "2026-01-20",
+      "text": "Ordered a personalised wedding guest book. The quality was exceptional — thick pages, beautiful foil cover. Our guests loved signing it. Could not recommend more highly."
+    },
+    {
+      "id": "synth_016",
+      "rating": 3,
+      "author": "B. White",
+      "date": "2026-01-18",
+      "text": "Nice products but getting quite pricey. The diary was £28 which feels steep. Design selection is great though — much better than competitors like Moleskine for personalisation."
+    },
+    {
+      "id": "synth_017",
+      "rating": 1,
+      "author": "G. Lewis",
+      "date": "2025-12-19",
+      "text": "Three weeks before Christmas and my order is lost. The courier tracking shows delivered but I never received it. Customer service are asking me to wait another 5 working days before they'll investigate. Unacceptable."
+    },
+    {
+      "id": "synth_018",
+      "rating": 5,
+      "author": "I. Walker",
+      "date": "2026-01-15",
+      "text": "The personalisation tool on the website is brilliant — really easy to visualise exactly what you're getting. No surprises when it arrived. Exactly as shown."
+    },
+    {
+      "id": "synth_019",
+      "rating": 4,
+      "author": "E. Hall",
+      "date": "2026-01-12",
+      "text": "Lovely notebook, arrived in perfect condition. The packaging was beautiful — felt like a proper gift even though I ordered it for myself. Perhaps slightly over-packaged for an eco perspective."
+    },
+    {
+      "id": "synth_020",
+      "rating": 2,
+      "author": "V. Allen",
+      "date": "2026-01-10",
+      "text": "The mobile app crashed three times during checkout. Had to complete the purchase on desktop. A checkout that doesn't work on iPhone in 2026 is simply not good enough."
+    },
+    {
+      "id": "synth_021",
+      "rating": 5,
+      "author": "Q. Young",
+      "date": "2026-01-08",
+      "text": "Gifted a personalised photo album to my parents for their anniversary. They were completely overwhelmed. The quality made it feel like an heirloom rather than a purchased gift."
+    },
+    {
+      "id": "synth_022",
+      "rating": 3,
+      "author": "U. King",
+      "date": "2026-01-05",
+      "text": "Delivery took 9 days for standard shipping. The estimated date shown at checkout was 5 days. Not awful but the expectation-setting could be better."
+    },
+    {
+      "id": "synth_023",
+      "rating": 1,
+      "author": "X. Scott",
+      "date": "2025-12-18",
+      "text": "Absolutely catastrophic Christmas experience. Ordered November 30th, tracking stopped updating December 8th. Contacted support six times. No resolution until January 5th when they finally reshipped. No compensation offered."
+    },
+    {
+      "id": "synth_024",
+      "rating": 4,
+      "author": "Z. Adams",
+      "date": "2026-01-03",
+      "text": "Really high quality product. I only knocked one star because the foil personalisation on my notebook has started peeling after 3 weeks of daily use. Might be a durability issue worth looking into."
+    },
+    {
+      "id": "synth_025",
+      "rating": 5,
+      "author": "W. Campbell",
+      "date": "2026-02-22",
+      "text": "Customer service team were fantastic when I made an error on my personalisation. They caught it before printing and messaged me to confirm. Saved what would have been a very disappointing order."
+    },
+    {
+      "id": "synth_026",
+      "rating": 2,
+      "author": "Y. Phillips",
+      "date": "2026-02-14",
+      "text": "The stickers I ordered were fine but the packaging was over the top — way more plastic than necessary for a small item. Papier markets itself as a premium brand so I'd expect more thought on sustainability."
+    },
+    {
+      "id": "synth_027",
+      "rating": 5,
+      "author": "AA. Evans",
+      "date": "2026-02-12",
+      "text": "I use Papier notebooks exclusively for work. The quality is consistent every single time. The paper takes fountain pen ink beautifully with minimal bleed-through."
+    },
+    {
+      "id": "synth_028",
+      "rating": 3,
+      "author": "BB. Turner",
+      "date": "2026-02-09",
+      "text": "The product is good but I find the website quite slow and clunky on Safari. Filtering by design takes a while to load. Feels like it needs a technical refresh."
+    },
+    {
+      "id": "synth_029",
+      "rating": 1,
+      "author": "CC. Parker",
+      "date": "2026-01-30",
+      "text": "Received a personalised item with someone else's name on it. Clearly a picking error. When I contacted customer service they were helpful but took 5 days to respond. Gift was for a birthday that had already passed."
+    },
+    {
+      "id": "synth_030",
+      "rating": 4,
+      "author": "DD. Collins",
+      "date": "2026-01-27",
+      "text": "Love the designs — much more interesting than anything else I've found. Pricing is on the higher side but I think the quality justifies it. Delivery was exactly on time."
+    },
+    {
+      "id": "synth_031",
+      "rating": 5,
+      "author": "EE. Stewart",
+      "date": "2026-01-24",
+      "text": "Bought the large format photo book for our family holiday. The colours are incredible and the print quality rivals professional photo labs. The unboxing experience was genuinely delightful."
+    },
+    {
+      "id": "synth_032",
+      "rating": 2,
+      "author": "FF. Morris",
+      "date": "2026-01-21",
+      "text": "Delivery was significantly later than the estimated date. No communication from Papier — I had to log in and check the tracking myself. For a premium brand this is below par."
+    },
+    {
+      "id": "synth_033",
+      "rating": 5,
+      "author": "GG. Rogers",
+      "date": "2026-01-18",
+      "text": "The personalisation quality is absolutely top tier. Font rendering is crisp, foil is vivid. I've compared to competitors and Papier is streets ahead on execution."
+    },
+    {
+      "id": "synth_034",
+      "rating": 3,
+      "author": "HH. Reed",
+      "date": "2026-01-15",
+      "text": "Decent product but I do wonder if the pricing is creeping too high. Used to feel like accessible luxury — now it's just expensive. A loyalty discount would go a long way."
+    },
+    {
+      "id": "synth_035",
+      "rating": 1,
+      "author": "II. Cook",
+      "date": "2025-12-24",
+      "text": "Order placed December 1st, guaranteed pre-Christmas delivery. Arrived December 27th. No compensation, no apology, just a 10% off voucher for a future order. I won't be placing one."
+    },
+    {
+      "id": "synth_036",
+      "rating": 4,
+      "author": "JJ. Morgan",
+      "date": "2026-02-17",
+      "text": "Genuinely lovely gifting experience. The outer box, the tissue paper, the ribbon — every detail considered. The recipient thought I'd spent a fortune wrapping it myself."
+    },
+    {
+      "id": "synth_037",
+      "rating": 5,
+      "author": "KK. Bell",
+      "date": "2026-02-11",
+      "text": "I'm a repeat customer and the product quality has stayed consistently high over the years. The new A4 notebook size is a great addition. Works perfectly as a desk journal."
+    },
+    {
+      "id": "synth_038",
+      "rating": 2,
+      "author": "LL. Murphy",
+      "date": "2026-02-06",
+      "text": "The website is beautiful but it's slow. Product pages take forever to load on mobile. I almost gave up and ordered from a competitor. Sort out the performance please."
+    },
+    {
+      "id": "synth_039",
+      "rating": 3,
+      "author": "MM. Bailey",
+      "date": "2026-02-02",
+      "text": "Product quality is good but the outer packaging arrived slightly crushed. The item inside was fine but it doesn't give a great first impression when it's a gift."
+    },
+    {
+      "id": "synth_040",
+      "rating": 5,
+      "author": "NN. Rivera",
+      "date": "2026-01-29",
+      "text": "My daughter used Papier for her wedding stationery and it was flawless. The personalisation was beautiful and every single piece was printed perfectly. Many guests asked where she'd had it done."
+    },
+    {
+      "id": "synth_041",
+      "rating": 1,
+      "author": "OO. Cooper",
+      "date": "2026-01-26",
+      "text": "Ordered a personalised gift. The text was cut off in the printed version even though it was fine in the preview. When I raised this, customer service offered a 20% discount but no reprint. Not good enough."
+    },
+    {
+      "id": "synth_042",
+      "rating": 4,
+      "author": "PP. Richardson",
+      "date": "2026-01-22",
+      "text": "Really pleased with the product. Delivery was on time. Only minor issue: the protective sleeve on the notebook was split when it arrived. Easily resolved but slightly diminishes the premium feel."
+    },
+    {
+      "id": "synth_043",
+      "rating": 5,
+      "author": "QQ. Cox",
+      "date": "2026-01-18",
+      "text": "Papier notebooks are my one true luxury. I buy one every January and it makes me actually look forward to work. The personalisation adds such a personal touch. Never changing."
+    },
+    {
+      "id": "synth_044",
+      "rating": 2,
+      "author": "RR. Howard",
+      "date": "2026-01-14",
+      "text": "The quality is still there but the prices have gone up significantly this year. I used to buy gifts for my whole team but now it's out of budget. Will have to find an alternative."
+    },
+    {
+      "id": "synth_045",
+      "rating": 3,
+      "author": "SS. Ward",
+      "date": "2026-01-10",
+      "text": "Delivery took longer than expected and I had to follow up to get a tracking number. Customer service was helpful once I reached them but shouldn't have needed to chase."
+    },
+    {
+      "id": "synth_046",
+      "rating": 5,
+      "author": "TT. Torres",
+      "date": "2026-01-06",
+      "text": "The new year collection designs are absolutely beautiful. Ordered the desk pad and it's transformed my workspace. The quality of the print and paper is exceptional."
+    },
+    {
+      "id": "synth_047",
+      "rating": 4,
+      "author": "UU. Peterson",
+      "date": "2025-12-30",
+      "text": "Good product despite the Christmas delays everyone seems to have experienced. My order came 3 days late but the personalisation was spot on and the packaging was gorgeous."
+    },
+    {
+      "id": "synth_048",
+      "rating": 1,
+      "author": "VV. Gray",
+      "date": "2025-12-26",
+      "text": "Christmas gift arrived January 2nd. My nephew was upset. I get that logistics is hard at Christmas but the estimated delivery date shown when I ordered gave me no indication of this risk."
+    },
+    {
+      "id": "synth_049",
+      "rating": 5,
+      "author": "WW. Ramirez",
+      "date": "2026-02-25",
+      "text": "I've given Papier gifts to probably 20 people over the years. Every single one has been received with genuine delight. The brand has mastered what a gift should feel like."
+    },
+    {
+      "id": "synth_050",
+      "rating": 3,
+      "author": "XX. James",
+      "date": "2026-02-19",
+      "text": "Product is good but I had trouble with the website editor on Chrome — some of the design elements weren't rendering correctly. Had to switch to Firefox to complete the personalisation."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+# Environment and secrets
+.env
+*.env
+
+# Real customer data — never commit this
+data/real/
+
+# Generated outputs — keep out of version control
+outputs/reports/
+memory/history.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# OS
+.DS_Store

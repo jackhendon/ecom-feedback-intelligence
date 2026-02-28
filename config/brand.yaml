@@ -1,0 +1,37 @@
+brand:
+  name: "Papier"
+  industry: "ecommerce_stationery"
+
+review_sources:
+  trustpilot:
+    mock_mode: true
+    sample_file: "data/examples/trustpilot_sample.json"
+    # To connect to the real TrustPilot API:
+    # 1. Set mock_mode: false
+    # 2. Add TRUSTPILOT_API_KEY to your .env file
+    # 3. Implement _fetch_from_api() in agents/ingestion/trustpilot.py
+
+themes:
+  - packaging
+  - personalisation
+  - delivery
+  - product_quality
+  - website_ux
+  - customer_service
+  - pricing
+  - gifting_experience
+
+sentiment:
+  weights:
+    negative: 2.0   # Negative reviews count double for priority scoring
+    neutral: 1.0
+    positive: 0.5
+
+reporting:
+  slack_enabled: false  # Toggle without code changes
+  markdown_enabled: true
+  output_dir: "outputs/reports"
+
+memory:
+  history_file: "memory/history.json"
+  max_snapshots: 12  # Rolling ~3-month window of weekly runs
