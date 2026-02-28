@@ -1,12 +1,11 @@
 # Skill: analyze-reviews
 
-Full pipeline analysis of customer reviews. Run this to process reviews, generate PM insights, and update history.
+Full pipeline analysis of customer reviews. Parallel classification via subagents — fast and token-efficient.
 
 ## Usage
 ```
 /analyze-reviews
 /analyze-reviews data/examples/trustpilot_sample.json
-/analyze-reviews [path/to/reviews.json]
 ```
 
 If no file path is given, default to the path in `config/brand.yaml` → `review_sources.trustpilot.sample_file`.
@@ -18,7 +17,7 @@ If no file path is given, default to the path in `config/brand.yaml` → `review
 ### Step 1: Load configuration
 Read `config/brand.yaml`. Extract:
 - `brand.name`
-- `themes` list (these are the only valid theme slugs)
+- `themes` list (valid slugs)
 - `sentiment.weights` (negative, neutral, positive)
 - `reporting.output_dir`
 - `memory.history_file`
@@ -26,59 +25,72 @@ Read `config/brand.yaml`. Extract:
 
 ### Step 2: Load reviews
 Read the JSON file. Validate it has a `reviews` array. Report total count.
-
 If the file doesn't exist or has no reviews, stop and tell the user.
 
-### Step 3: Classify reviews (batches of 10)
-For each review, determine:
+### Step 3: Classify reviews — parallel subagents
 
-**Sentiment:**
-- Label: `positive`, `neutral`, or `negative`
-- Confidence: 0.0–1.0
-- Drivers: 1–3 noun phrases grounded in review text
+Split the reviews array into chunks of 10. Spawn one subagent per chunk simultaneously using the Agent tool (subagent_type: general-purpose, foreground, model: haiku).
 
-**Themes:**
-- 1–3 themes from the taxonomy in `.claude/rules/theme-taxonomy.md`
-- Use exact slugs only
-- Primary theme first
+Each subagent receives this exact prompt (substitute the actual reviews JSON and valid theme slugs):
 
-Apply standards from `.claude/rules/analysis-standards.md`.
+---
+**Subagent prompt:**
 
-Process in batches of 10. After each batch, output a progress line:
+Classify each review below. Return ONLY a JSON array — no explanation, no markdown, no other text.
+
+Valid theme slugs (use only these): `packaging`, `personalisation`, `delivery`, `product_quality`, `website_ux`, `customer_service`, `pricing`, `gifting_experience`
+
+Sentiment weights for reference: negative=2.0, neutral=1.0, positive=0.5
+
+For each review output one object:
+```json
+{"id":"<id>","r":<rating>,"s":"<pos|neu|neg>","c":<confidence 0.0-1.0>,"t":["<primary_theme>","<optional_secondary>"],"date":"<YYYY-MM-DD>"}
 ```
-Classified reviews 1–10 of 50...
-Classified reviews 11–20 of 50...
-```
+
+Rules:
+- `s`: positive = net satisfied (rating 4-5, affirming language); negative = net dissatisfied (rating 1-2, or strong complaint); neutral = mixed/indeterminate
+- `c`: 0.9-1.0 unambiguous; 0.7-0.8 strong signal; 0.5-0.6 mixed; 0.3-0.4 conflicting rating vs language
+- `t`: 1-3 slugs only, primary theme first, must have explicit evidence in text
+- Do not infer themes beyond what is stated
+
+Reviews to classify:
+[INSERT REVIEWS JSON ARRAY HERE]
+---
+
+Wait for all subagents to complete, then collect and merge their JSON arrays into a single flat list of classified reviews.
 
 ### Step 4: Score priority
-For each review, calculate (deterministic formula — do not use judgment):
+For each classified review, calculate (deterministic — no LLM):
 ```
-recency_multiplier = 1.2 if days_since_review ≤ 7 else (1.0 if days_since_review ≤ 30 else 0.8)
-sentiment_weight = weights[sentiment_label]
-priority = (6 - rating) × sentiment_weight × confidence × recency_multiplier
+today = current date
+days_old = (today - review date) in days
+recency = 1.2 if days_old ≤ 7 else (1.0 if days_old ≤ 30 else 0.8)
+weight = sentiment_weights[s]  # from brand.yaml
+priority = max(0, (6 - r) × weight × c × recency)
 ```
-Today's date for recency: use the current date.
-Clamp to 0 if result is negative (5-star positive reviews can go slightly negative due to formula — floor at 0).
 
 ### Step 5: Aggregate
-Calculate:
-- Sentiment distribution: count and % for each label
-- Theme frequency: for each theme slug, count total mentions, primary mentions, secondary+ mentions
-- High-priority issues: all reviews with priority ≥ 6.0, sorted by priority descending
+- Sentiment distribution: count and % for pos/neu/neg
+- Theme frequency: for each slug, total mentions (primary + secondary)
+- High-priority issues: all reviews with priority ≥ 6.0, sorted descending
+- avg_priority_score: mean of all priority scores
 
 ### Step 6: Generate PM insights
-Produce:
+Using the aggregated data, produce:
 
 **Executive summary** (2–3 sentences): net sentiment, dominant theme, most urgent signal.
 
-**Top 3 opportunities**: Use format from `.claude/rules/analysis-standards.md`. Must be distinct, evidence-backed, actionable.
+**Top 3 opportunities**: distinct, evidence-backed, actionable. Format:
+`[Theme] — [Observation with count] → [Action] (Effort: X, Impact: X)`
 
-**Top 3 risks**: Patterns that could drive churn or reputation damage. Include urgency level.
+**Top 3 risks**: patterns threatening churn or reputation. Include urgency (immediate/monitor/watch).
 
-**Recommended experiments**: 2–3 specific, testable experiments with hypothesis and metric.
+**Recommended experiments**: 2–3 with hypothesis and metric.
+
+Apply standards from `.claude/rules/analysis-standards.md`.
 
 ### Step 7: Update history
-Read `memory/history.json`. Append a new snapshot:
+Read `memory/history.json`. Append snapshot:
 ```json
 {
   "period": "YYYY-WNN",
@@ -89,17 +101,12 @@ Read `memory/history.json`. Append a new snapshot:
     "neutral": {"count": N, "pct": N.N},
     "negative": {"count": N, "pct": N.N}
   },
-  "theme_frequency": {
-    "theme_slug": N
-  },
-  "high_priority_issues": [
-    {"id": "synth_XXX", "rating": N, "priority": N.N, "primary_theme": "slug"}
-  ],
+  "theme_frequency": {"slug": N},
+  "high_priority_issues": [{"id": "...", "rating": N, "priority": N.N, "primary_theme": "slug"}],
   "avg_priority_score": N.N
 }
 ```
-
-Keep only the last `max_snapshots` (12) snapshots. Write back to `memory/history.json`.
+Keep only last `max_snapshots` entries. Write back to `memory/history.json`.
 
 ### Step 8: Present results
 Output the inline summary format from `.claude/rules/report-format.md`.
